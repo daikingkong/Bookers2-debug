@@ -33,6 +33,7 @@ config.hosts << "c6b0607b073e405987caee37b36a75be.vfs.cloud9.us-east-1.amazonaws
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -52,7 +53,7 @@ config.hosts << "c6b0607b073e405987caee37b36a75be.vfs.cloud9.us-east-1.amazonaws
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
-
+  config.active_job.queue_adapter = :inline
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
