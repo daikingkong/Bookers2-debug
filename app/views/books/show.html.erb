@@ -45,9 +45,11 @@
             <td>
               <%= comments.comment %>
             </td>
+            <% if comments.user == current_user %>
             <td>
               <%= link_to 'Destroy', book_book_comment_path(comments), method: :delete, class: "btn btn-sm btn-danger"%>
             </td>
+            <% end %>
           </tr>
         <% end %>
       </table>
