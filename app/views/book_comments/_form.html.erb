@@ -1,0 +1,7 @@
+<%= form_with(model:[book, book_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
+  <!--rows: '5'はテキストエリアの高さの行数-->
+  <!--placeholderは薄文字で書いてほしい場所を知らせるメッセージを表示-->
+  <!--class: "w-100"は横幅の％を指定（bootstrap)-->
+  <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+<% end %>

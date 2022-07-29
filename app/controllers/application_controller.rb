@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource)
-    user_path(current_user)
+    user_path(resource)
+    # 登録後にユーザーの個人ページ、つまり「マイページ」のような
+    # ページにリダイレクトされるようになります。
+    # 今回でいうとユーザー詳細ページなので
+    # user_path(current_user)としていたのも
+    # 正解ではある、かも？
   end
 
   def after_sign_out_path_for(resource)

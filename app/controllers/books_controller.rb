@@ -1,14 +1,21 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  # before_action :ensure_correct_user, only: [:edit, :update]　destroyも他のユーザーにされないように
+
+  # def show
+  #   @book_new = Book.new
+  #   @book = Book.find(params[:id])
+  #   @user = @book.user
+  #   @book_comment_new = BookComment.new
+  #   @comments = @book.book_comments
+  # end
 
   def show
-    @book_new = Book.new
     @book = Book.find(params[:id])
-    @user = @book.user
-    @book_comment_new = BookComment.new
-    @comments = @book.book_comments
+    @book_comment = BookComment.new
   end
+
 
   def index
     @book = Book.new
@@ -53,9 +60,16 @@ class BooksController < ApplicationController
 
   def ensure_correct_user
     @book = Book.find(params[:id])
-    @user = @book.user
-    unless @user == current_user
+    unless @book.user == current_user
       redirect_to books_path
     end
   end
+
+  # def ensure_correct_user
+  #   @book = Book.find(params[:id])
+  #   @user = @book.user
+  #   unless @user == current_user　@book.user == current_userで一行で済む
+  #     redirect_to books_path
+  #   end
+  # end
 end
