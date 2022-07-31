@@ -33,7 +33,6 @@ config.hosts << "53e24c6b397e4798b5f006c90b62a46a.vfs.cloud9.ap-northeast-1.amaz
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

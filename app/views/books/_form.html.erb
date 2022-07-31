@@ -1,4 +1,6 @@
 <%= form_with model:book,local:true do |f| %>
+<!--form_withはRailsの比較的新しいメソッド。このメソッドではデフォルトがAjax通信で、非同期通信になってしまうのです。（これはRails 5.1〜6.0の仕様でRails 6.1からは同期通信がデフォルトに戻っているそうです。当記事はRails6.0.3です。→参考。@jnchito さん、ありがとうございます！）それはつまり、必要な箇所だけページが更新され、その他の箇所はそのままになるという事。だからエラーメッセージのHTML部分が加えられなかったのです。-->
+<!--ここにlocal: trueと引数を渡す事で、これが通常のHTTPリクエストになり、ページ全体が返ってきてページがリロードされ、エラーメッセージも表示されるようになります。-->
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, value: "", class: 'form-control book_title' %>
