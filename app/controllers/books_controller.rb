@@ -12,8 +12,10 @@ class BooksController < ApplicationController
   # end
 
   def show
+    @book_new = Book.new
     @book = Book.find(params[:id])
     @book_comment = BookComment.new
+    @user = @book.user
   end
 
 
@@ -35,6 +37,7 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    # ネストしてるから上の記述無くても良い
   end
 
   def update
@@ -48,6 +51,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book = Book.find(params[:id])
+    # ネストしてるから上の記述無くても良い
     @book.destroy
     redirect_to books_path
   end
