@@ -60,6 +60,10 @@ class User < ApplicationRecord
     # include?(含めますか？=>userを）
   end
 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  end
+
   def self.search_for(content, method)
     # perfectは、あとでビューの方でハッシュを使い
     # 完全一致というキーで取り出す
@@ -75,7 +79,4 @@ class User < ApplicationRecord
     end
   end
 
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
-  end
 end

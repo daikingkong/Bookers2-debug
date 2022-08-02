@@ -10,8 +10,13 @@
   </head>
   <body>
     <%= render 'layouts/header' %>
-      <main>
+    <main>
       <p id="notice"><%= notice %></p>
+      <div class="d-flex justify-content-center mb-2">
+        <!--div class="d-flex justify-content-center"は、display:flex; justify-content:center;と同じ-->
+        <!--mb-2=下側のマージンを0.5rem-->
+        <%= render 'layouts/search' %>
+      </div>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>

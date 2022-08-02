@@ -28,10 +28,16 @@ class Book < ApplicationRecord
       Book.where(title: content)
     elsif method == 'forwerd'
       Book.where('title LIKE ?', content+'%')
+      # 前方一致(から始まる)：検索値%
     elsif method == 'backwerd'
       Book.where('title LIKE ?', '%'+content)
+      #  後方一致(で終わる)：%検索値
     else
       Book.where('title LIKE ?', '%'+content+'%')
+      # モデルクラス.where("列名 LIKE ?", "%値%")は、値(文字列)を含む
+      # モデルクラス.where("列名 LIKE ?", "値_")は、値(文字列)と末尾の1文字
+      # 「?」はプレースホルダと言うもので、第2引数の値を「?」へ置き換えるための目印です。
+      # SQLインジェクションなどのセキュリティリスクを防ぐ働きもあります。
     end
   end
 
