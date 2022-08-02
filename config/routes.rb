@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
+  
   root to: "homes#top"
   # root :to =>"homes#top"
   # root "homs#top"
   # どれでも同じ
   get "home/about"=>"homes#about"
-  # した2行いる？
-  get 'relationships/followings'
-  get 'relationships/followers'
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
