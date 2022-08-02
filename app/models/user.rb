@@ -65,13 +65,13 @@ class User < ApplicationRecord
     # 完全一致というキーで取り出す
     if method == 'perfect'
     # ここでは取り出した物がmethodと同じならtrueで以下の処理をする
-      User.where(title: content)
+      User.where(name: content)
     elsif method == 'forwerd'
-      User.where('title LIKE ?', content+'%')
+      User.where('name LIKE ?', content+'%')
     elsif method == 'backwerd'
-      User.where('title LIKE ?', '%'+content)
+      User.where('name LIKE ?', '%'+content)
     else
-      User.where('title LIKE ?', '%'+content+'%')
+      User.where('name LIKE ?', '%'+content+'%')
     end
   end
 
