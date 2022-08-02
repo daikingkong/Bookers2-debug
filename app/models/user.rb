@@ -60,6 +60,21 @@ class User < ApplicationRecord
     # include?(含めますか？=>userを）
   end
 
+  def self.search_for(content, method)
+    # perfectは、あとでビューの方でハッシュを使い
+    # 完全一致というキーで取り出す
+    if method == 'perfect'
+    # ここでは取り出した物がmethodと同じならtrueで以下の処理をする
+      User.where(title: content)
+    elsif method == 'forwerd'
+      User.where('title LIKE ?', content+'%')
+    elsif method == 'backwerd'
+      User.where('title LIKE ?', '%'+content)
+    else
+      User.where('title LIKE ?', '%'+content+'%')
+    end
+  end
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
