@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
+
   # フォローをした、されたの関係
   # UserからみてRelationshipは多対１
   # しかし、今回Relationshipの中でもUserに対し2種類記述した為
