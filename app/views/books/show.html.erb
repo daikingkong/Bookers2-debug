@@ -43,16 +43,17 @@
         <!--% end %>-->
         </tr>
       </table>
-        <div id="book_comments_index_<%= @book.id %>">
-          <%= render "book_comments/index", book: @book %>
-        </div>
-        <div id="book_comments_form">
-          <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
-        </div>
+
+      <div id="book_comments_index_<%= @book.id %>">
+        <%= render "book_comments/index", book: @book %>
+      </div>
+      <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+
       <!--%= form_with model: [@book, @book_comment_new] do |f| %>-->
         <!--%= f.text_area :comment, rows:'5', style:"width:100%" %>-->
         <!--%= f.submit '送信' %>-->
       <!--% end %>-->
+
     </div>
   </div>
 </div>
