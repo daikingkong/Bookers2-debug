@@ -1,10 +1,9 @@
 class BookCommentsController < ApplicationController
   def create
-    book = Book.find(params[:book_id])
-    comment = current_user.book_comments.new(book_comment_params)
-    comment.book_id = book.id
-    comment.save
-    redirect_to request.referer
+    @book = Book.find(params[:book_id])
+    @comment = current_user.book_comments.new(book_comment_params)
+    @comment.book_id = @book.id
+    @comment.save
     # referer(リファラ)は
     # 「リンク元のURL（直前に見ていたページのURL）は、これです」
     # な情報が書いてある
@@ -15,15 +14,15 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
+    @book = Book.find(params[:book_id])
     BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy
-    redirect_to request.referer
   end
 
   # def destroy
   #   book = Book.find(params[:book_id])
-  #   comment = current_user.book_comments.find_by(book_id: book.id)
+  #   comment = current_user.book_comments.find_by(book_id: @book.id)
   #   comment.destroy
-  #   redirect_back fallback_location :book
+  #   redirect_to request.referer
   # end
 
   private
