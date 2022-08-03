@@ -1,2 +1,1 @@
-$('#favorite_btn_<%= @book.id %>').html("<%= j(render partial: 'favorites/favorite-btn', locals: {book: @book}) %>");
-<!--指定したセレクタ(idの部分)のみHTMLをrenderして部分的に更新します。-->
+$('#favorite_btn_<%= @book.id %>').html("<%= j(render 'favorites/favorite-btn',  book: @favorite.book ) %>")
