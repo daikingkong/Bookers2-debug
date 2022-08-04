@@ -8,9 +8,14 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
 
-  has_many :user_rooms
-  has_many :chats
-  has_many :rooms, through: :user_rooms
+# ユーザーは多くの部屋に所属できる。
+# ・チャットルームは多くのユーザー（今回はＤＭなので二人ですが）が所属している。
+# これは多対多ですね。
+# # 先ほども申しましたが今回はUser_Roomテーブルを中間テーブルとしています。
+# # UserRoomテーブルの情報を参照してデータのやり取りをしていると思います。
+  has_many :chats, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :rooms, through: :user_rooms, dependent: :destroy
 
   # フォローをした、されたの関係
   # UserからみてRelationshipは多対１

@@ -1,3 +1,3 @@
-$('#favorite_btn_<%= @book.id %>').html("<%= j(render 'favorites/favorite-btn', book: @favorite.book ) %>")
+$('#favorite_btn_<%= @book.id %>').html("<%= j(render 'favorites/favorite-btn',  book: @favorite.book ) %>")
 <!--指定したセレクタ(idの部分)のみHTMLをrenderして部分的に更新します。-->
 <!--j()はescape_javascript()の省略形,js.erbファイルで部分テンプレートを呼び出す際に必要-->
