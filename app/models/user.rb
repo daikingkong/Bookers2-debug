@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :rooms, through: :user_rooms, dependent: :destroy
 
+  has_many :view_counts, dependent: :destroy
+
   # フォローをした、されたの関係
   # UserからみてRelationshipは多対１
   # しかし、今回Relationshipの中でもUserに対し2種類記述した為
