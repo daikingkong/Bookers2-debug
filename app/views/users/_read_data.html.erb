@@ -1,0 +1,136 @@
+<h2>投稿数の前日比・前週比</h2>
+<div class="table_width">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>今日の投稿数</th>
+        <th>前日の投稿数</th>
+        <th>前日比</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= today_book.count %></td>
+        <td><%= yesterday_book.count %></td>
+        <td>
+          <% if today_book == 0 %>
+            今日の投稿はありません
+          <% else %>
+            <% this_day_before = today_book.count / yesterday_book.count.to_f %>
+            <%= (this_day_before*100).round %>%
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>今週の投稿数</th>
+        <th>前週の投稿数</th>
+        <th>前週比</th>
+      </tr>
+      <tr>
+        <td><%= this_week_book.count %></td>
+        <td><%= last_week_book.count %></td>
+        <td>
+          <% if this_week_book == 0 %>
+            今週の投稿はありません
+          <% else %>
+            <% this_week_before = this_week_book.count / last_week_book.count.to_f %>
+            <%= (this_week_before*100).round %>%
+          <% end %>
+        </td>
+      </tr>
+    </thead>
+  </table>
+  <b>7日間分の投稿数</b>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>6日前</th>
+        <th>5日前</th>
+        <th>4日前</th>
+        <th>3日前</th>
+        <th>2日前</th>
+        <th>1日前</th>
+        <th>今日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= books.created_6days.count %></td>
+        <td><%= books.created_5days.count %></td>
+        <td><%= books.created_4days.count %></td>
+        <td><%= books.created_3days.count %></td>
+        <td><%= books.created_2days.count %></td>
+        <td><%= books.created_yesterday.count %></td>
+        <td><%= books.created_today.count %></td>
+      </tr>
+    </tbody>
+  </table>
+  <table>
+    <tr>
+      <!--そもそもこれ以下は基本の型があり、公式が用意したものを自分好みに編集する-->
+      <canvas id="myLineChart"></canvas>
+      <!--上でidを記述した物をしたのgetElementByIdのとこで引数としているのでおそらくそれ以下の記述と紐づいてる？-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+      <!--☝でc必要な種類のグラフのデータの読み込み-->
+      <script>
+          $(document).on('turbolinks:load', function() {
+            // ☝でturbokinksを無効化
+          var ctx = document.getElementById("myLineChart");
+          // Document の getElementById() メソッドは、 id プロパティが指定された文字列(canvas)に一致する要素を表す Element オブジェクトを返します。要素の ID は指定されていれば固有であることが求められているため、特定の要素にすばやくアクセスするには便利な方法です。
+          var myLineChart = new Chart(ctx, {
+            type: 'line',
+            // ☝はtypeにはグラフのタイプ
+            data: {
+            // dataにはグラフのデータ
+              labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+               //データ項目のラベル
+              datasets: [
+                 //データセット
+                {
+                  label: '投稿した本の数',
+                    //凡例
+                  data: [<%= @books.created_6days.count %>, <%= @books.created_5days.count %>, <%= @books.created_4days.count %>, <%= @books.created_3days.count %>, <%= @books.created_2days.count %>, <%= @yesterday_book.count %>, <%= @today_book.count%>],
+                   //グラフのデータ
+                  borderColor: "rgba(0,0,255,1)",
+                   //枠線の色
+                  backgroundColor: "rgba(0,0,0,0)"
+                  //背景色
+                }
+              ],
+            },
+            options: {
+              // optionsには各種オプションを設定します。
+              title: {
+                display: true,
+                text: '7日間の投稿数の比較'
+              },
+              scales: {
+                //軸の設定
+                yAxes: [{
+                  //縦軸の設定
+                  ticks: {
+                    //目盛りの設定
+                    suggestedMax: 15,
+                    // 縦軸の最大値
+                    suggestedMin: 0,
+                    // 縦軸の最小値？
+                    stepSize: 1,
+                    //数字の感覚(例えば5.10.15）のような
+                    callback: function(value, index, values){
+                      return  value
+                    }
+                  }
+                }]
+              },
+            }
+          });
+        });
+      </script>
+    </tr>
+  </table>
+</div>

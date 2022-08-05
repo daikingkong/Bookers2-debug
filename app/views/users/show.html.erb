@@ -31,7 +31,7 @@
 <!--  </tbody>-->
 <!--</table>-->
       <%= render 'books/index',books: @books %>
-      <%= render 'before_ratio', today_book: @today_book, yesterday_book: @yesterday_book,this_week_book: @this_week_book, last_week_book: @last_week_book %>
+      <%= render 'read_data', books: @books, today_book: @today_book, yesterday_book: @yesterday_book,this_week_book: @this_week_book, last_week_book: @last_week_book %>
     </div>
   </div>
 </div>
