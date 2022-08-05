@@ -12,6 +12,18 @@ class UsersController < ApplicationController
     @last_week_book = @books.created_last_week
   end
 
+  def search
+    @user =User.find(params[:user_id])
+    @books = @user.books
+    if (params[:creted_at]) == ""
+      @book_search = "日付を選択してください"
+    else
+      created_at = (params[:created_at])
+      @book_search = @books.where('created_at LIKE ?',"#{created_at}%")
+      # このユーザーのブック全てから作成日時情報を
+    end
+  end
+
   def index
     @users = User.all
     @book = Book.new
