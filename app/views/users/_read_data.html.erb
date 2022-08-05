@@ -76,7 +76,7 @@
       <canvas id="myLineChart"></canvas>
       <!--上でidを記述した物をしたのgetElementByIdのとこで引数としているのでおそらくそれ以下の記述と紐づいてる？-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-      <!--☝でc必要な種類のグラフのデータの読み込み-->
+      <!--☝でこれで読み込む場合は決まったものになる？-->
       <script>
           $(document).on('turbolinks:load', function() {
             // ☝でturbokinksを無効化
@@ -98,8 +98,10 @@
                    //グラフのデータ
                   borderColor: "rgba(0,0,255,1)",
                    //枠線の色
-                  backgroundColor: "rgba(0,0,0,0)"
+                  backgroundColor: "rgba(0,0,0,0)",
                   //背景色
+                  tension: 0.4
+                  // 張の強さ(曲線に影響）
                 }
               ],
             },
@@ -109,6 +111,8 @@
                 display: true,
                 text: '7日間の投稿数の比較'
               },
+              responsive: true,
+              // 多分レスポンシブ対応
               scales: {
                 //軸の設定
                 yAxes: [{

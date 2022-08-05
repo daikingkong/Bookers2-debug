@@ -10,9 +10,12 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import jQuery from "jquery"
 import "jquery"
 import "popper.js"
 import "bootstrap"
+import Chart from 'chart.js/auto';
+// ☝(グラフにこれと下のコメントのとこ二つ必須）あとはわからん
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application"
 
@@ -23,3 +26,9 @@ require('chart.js')
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+global.$ = jQuery;
+window.$ = jQuery;
+global.Chart = Chart;
+// ☝(グラフにこれと上のコメントのとこ二つ必須）あとはわからん
