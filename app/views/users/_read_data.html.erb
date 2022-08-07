@@ -30,9 +30,11 @@
         <td>
           <% if today_book == 0 %>
             今日の投稿はありません
+          <% elsif yesterday_book.count != 0 %>
+            <% the_day_before = today_book.count / yesterday_book.count.to_f %>
+            <%= (the_day_before * 100).round %>%
           <% else %>
-            <% this_day_before = today_book.count / yesterday_book.count.to_f %>
-            <%= (this_day_before*100).round %>%
+            前日は読んでいません
           <% end %>
         </td>
       </tr>
@@ -52,9 +54,11 @@
         <td>
           <% if this_week_book == 0 %>
             今週の投稿はありません
+          <% elsif last_week_book.count != 0 %>
+            <% the_week_before = this_week_book.count / last_week_book.count.to_f %>
+            <%= (the_week_before*100).round %>%
           <% else %>
-            <% this_week_before = this_week_book.count / last_week_book.count.to_f %>
-            <%= (this_week_before*100).round %>%
+            前週は読んでいません
           <% end %>
         </td>
       </tr>
