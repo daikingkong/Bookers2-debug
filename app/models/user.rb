@@ -19,6 +19,9 @@ class User < ApplicationRecord
 
   has_many :view_counts, dependent: :destroy
 
+  has_many :group_users
+  has_many :groups, through: :group_users
+
   # フォローをした、されたの関係
   # UserからみてRelationshipは多対１
   # しかし、今回Relationshipの中でもUserに対し2種類記述した為
