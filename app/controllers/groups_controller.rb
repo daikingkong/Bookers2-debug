@@ -1,8 +1,9 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:update, :edit]
+
   def new
-    @new = Group.new
+    @group = Group.new
   end
 
   def index
@@ -11,15 +12,16 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @book = Book.new
   end
 
   def create
-    group = group.new(group_params)
-    group.owner_id = current_user.id
-    if group.save
+    @group = Group.new(group_params)
+    @group.owner_id = current_user.id
+    if @group.save
       redirect_to groups_path
     else
-      render :new
+      render 'new'
     end
   end
 
@@ -27,8 +29,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    group = Group.find(params[:id])
-    if group.update(group_params)
+    if @group.update(group_params)
       redirect_to groups_path
     else
       render :edit
@@ -38,7 +39,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :image)
+    params.require(:group).permit(:name, :introduction, :group_image)
   end
 
   def ensure_correct_user
