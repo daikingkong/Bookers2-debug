@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     unless @group.users.include?(current_user)
       @group.users << current_user
-      redirect_to group_path(@group)
+      redirect_to request.referer
     else
       @groups = Group.all
       render :index
@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
   def leave
     @group = Group.find(params[:group_id])
     @group.users.destroy(current_user)
-    redirect_to groups_path
+      redirect_to request.referer
   end
 
   def edit
