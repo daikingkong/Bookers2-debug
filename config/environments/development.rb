@@ -34,7 +34,18 @@ config.hosts << "53e24c6b397e4798b5f006c90b62a46a.vfs.cloud9.ap-northeast-1.amaz
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    domain:               'gmail.com',
+    user_name:            '送り主のメールアドレス',
+    password:             'google二段階認証のアプリパスワード',
+    authentication:       'login',
+    enable_starttls_auto: true
+  }
 
   config.action_mailer.perform_caching = false
 
