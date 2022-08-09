@@ -19,20 +19,8 @@
         <td id="favorite_btn_<%= book.id %>"><%= render "favorites/favorite-btn", book: book %></td>
         <td>コメント数: <%= book.book_comments.count %></td>
         <td class="view-count">閲覧数: <%= book.view_counts.count %></td>
-        <td><div id="star-rate<%= book.star %>" ></div>
-        </td>
+        <td><%= render "static_rate", book: book %></td>
       </tr>
-      <script>
-        $('#star-rate<%= book.star %>').empty();
-        $('#star-rate<%= book.star %>').raty({
-          size: 36,
-          starOff: '<%= asset_path('star-off.png') %>',
-          starOn: '<%= asset_path('star-on.png') %>',
-          helf: false,
-          readOnly: true,
-          score: <%= book.star %>,
-        })
-      </script>
     <% end %>
   </tbody>
 </table>
