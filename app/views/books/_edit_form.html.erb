@@ -1,11 +1,11 @@
 <%= form_with model:book,local:true do |f| %>
 <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title, value: "", class: 'form-control book_title' %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
   </div>
   <div class="form-group">
     <%= f.label :opinion %>
-    <%= f.text_area :body, value: "", class: 'form-control book_body' %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
   <div class="form-group row" id="star">
     <%= f.label :star, 'Rate', class:'ol-md-3 col-form-label' %>
@@ -21,7 +21,9 @@
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',
       scoreName: 'book[star]',
+      readOnly: true,
       helf: false,
+      score: '<%= book.star %>',
     });
   </script>
 <% end %>

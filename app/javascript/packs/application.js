@@ -21,7 +21,7 @@ import "../stylesheets/application"
 
 require('chartkick')
 require('chart.js')
-
+require('packs/raty')
 
 Rails.start()
 Turbolinks.start()
@@ -30,5 +30,6 @@ ActiveStorage.start()
 
 global.$ = jQuery;
 window.$ = jQuery;
+window.$ = window.jQuery = require('jquery');
 global.Chart = Chart;
 // ☝(グラフにこれと上のコメントのとこ二つ必須）あとはわからん
