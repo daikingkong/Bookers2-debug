@@ -41,8 +41,8 @@ config.hosts << "53e24c6b397e4798b5f006c90b62a46a.vfs.cloud9.ap-northeast-1.amaz
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'gmail.com',
-    user_name:            '送り主のメールアドレス',
-    password:             'google二段階認証のアプリパスワード',
+    user_name:            ENV['MAIL_ADDRESS'],
+    password:             ENV['MAIL_PASSWORD'],
     authentication:       'login',
     enable_starttls_auto: true
   }
